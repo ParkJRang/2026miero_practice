@@ -311,7 +311,7 @@ article > h2{font-size:32px; font-weight:bold; margin-bottom:20px;
 /* 캡션서식 */
 .girl figcaption{
   height:80px;
-  background:#111;
+  background:rgba(17, 17, 17, 0.7);
   position:absolute;
   width:100%; bottom:0;
   transition:0.5s;
