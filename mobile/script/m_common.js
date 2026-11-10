@@ -59,3 +59,21 @@ m_menu.forEach(function(item){
     }
   });
 });
+const top_btn = document.querySelector('.top_btn');
+window.addEventListener('scroll', function(){
+  // console.log(window.scrollY);//1000정도면 적당
+  let ws = window.scrollY;
+  if(ws>=1000){
+    top_btn.style.display='block';
+  }else{
+    top_btn.style.display='none';
+  }
+});
+
+// 탑버튼 클릭시 상단으로 부드럽게 올라가기 하기
+top_btn.addEventListener('click', function(){
+  window.scrollTo({
+    top:0,
+    behavior:'smooth' //부드럽게
+  });
+});
