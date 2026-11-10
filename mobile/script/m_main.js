@@ -145,7 +145,7 @@ tab_list.forEach((tab, i)=>{
     tab_list[i].classList.add('t_on');
     //3번째 탭메뉴 선택시, 탭컨텐츠 영역의 높이가 늘어나게 하기
     if(i===2){
-      tab_cont[i].parentElement.parentElement.parentElement.style.height='700px';
+      tab_cont[i].parentElement.parentElement.parentElement.style.height='800px';
       // tab_backImg.style.backgroundPosition='bottom';
     }else if(i===1){
       tab_cont[i].parentElement.parentElement.parentElement.style.height='500px';
