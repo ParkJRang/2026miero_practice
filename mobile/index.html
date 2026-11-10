@@ -178,13 +178,38 @@
     </section>
     <!-- 5. 이벤트 영역 -->
     <section id="event">
-      <article class="e_inner">
+      <article>
         <h2>미에로화이바 Event</h2>
-        <ul>
-          <li><a href="#none"><img src="./images/event01.jpg" alt="이벤트 배너이미지1"></a></li>
-          <li><a href="#none"><img src="./images/event02.jpg" alt="이벤트 배너이미지2"></a></li>
-          <li><a href="#none"><img src="./images/event03.jpg" alt="이벤트 배너이미지3"></a></li>
-        </ul>
+        <div class="slide">
+          <div class="slide_wrap">
+            <figure>
+              <a href="#none"><img src="./images/event01.jpg" alt="이벤트 배너이미지1"></a>
+              <figcaption>
+                <span>종료</span>
+                <p>[미에로 화이버 친구대회 이벤트]</p>
+                <p class="date">2026.03.30 ~ 2026.04.01</p>
+              </figcaption>
+            </figure>
+            <figure>
+              <a href="#none"><img src="./images/event02.jpg" alt="이벤트 배너이미지2"></a>
+              <figcaption>
+                <span>종료</span>
+                <p>[미에로 화이버 친구대회 이벤트]</p>
+                <p class="date">2026.03.30 ~ 2026.04.01</p>
+              </figcaption>
+            </figure>
+            <figure>
+              <a href="#none"><img src="./images/event03.jpg" alt="이벤트 배너이미지3"></a>
+              <figcaption>
+                <span>종료</span>
+                <p>[미에로 화이버 친구대회 이벤트]</p>
+                <p class="date">2026.03.30 ~ 2026.04.01</p>
+              </figcaption>
+            </figure>
+          </div>
+          <i class="fas fa-angle-left"></i>
+          <i class="fas fa-angle-right"></i>
+        </div>
       </article>
     </section>
     <!-- 6. 갤러리 영역 -->
@@ -281,7 +306,6 @@
   </main>
   <!-- 푸터 영역 -->
   <footer>
-    <a href="../index.html?move_pc_screen=1" title="">PC버전보기</a>
     <div class="f_inner">
       <nav>
         <dl>
@@ -320,6 +344,7 @@
             <dd><a href="인스타그램" title=""><i class="fab fa-instagram"></i></a></dd>
             <dd><a href="#" title="유튜브"><i class="fab fa-youtube"></i></a></dd>
           </div>
+          <a href="../index.html?move_pc_screen=1" title="" class="view_pc">PC버전보기</a>
         </dl>
       </nav>
     </div>
@@ -332,6 +357,39 @@
   <!-- 모바일 헤더,푸터 스크립트 -->
   <script src="./script/m_common.js"></script>
   <script src="./script/m_main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $('document').ready(function(){ //html문서 로딩 끝나면 아래 스크립트 내용 실행
+      const g_btn = $('#gallery input'); //더보기 버튼
+      g_btn.click(function(){
+        // alert('더보기 버튼 클릭');
+        //이벤트 무력화 a태그 기능을 못쓰게 하여 새로고침 안되게 하는 방법
+        //방법1. return false;
+        //방법2. 함수에 이벤트 객체 만들고(매개변수e 넣고) 마지막줄에 e.preventDefault();
+        //ajax 비동기 문법 사용하여 data폴더 안의 json데이터 불러오기
+        $.ajax({
+          url:'./data/g_data.json',// 불러올 데이터 파일명
+          type:'get',//전송방식
+          dataType:'json',//데이터 타입(json.xml...)
+          success:function(result){//데이터 로딩 성공하면 아래 내용 출력
+            //alert('데이터 로딩 성공');
+            let t = '<ul>';
+              $.each(result.product, function(i,e){
+                t+=`<li><img src="./images/${e.path}" alt="${e.title}"></li>`;
+              });
+              t+="</ul>";
 
+              //아이디 #list영역 안에 t변수값을 삽입
+              $('#list').html(t);
+            console.log(result.product)
+          }
+        });
+        //더보기 버튼 클릭 후 이미지 추가되면 더보기 숨김
+        $(this).hide();
+        return false;
+      });
+    });
+    // 비동기 통신(ajax)으로 연결한 기능이기 때문에 sever를 경유하지 않고 파일을 직접 열었을 경우 기능 확인 불가능
+  </script>
 </body>
 </html>

@@ -137,10 +137,14 @@ footer{
 /* f_inner 서식 */
 .f_inner{
   width:100%; margin:var(--m_auto);
-  padding:50px 0;
+  padding:40px 0 30px 0;
 }
-.f_inner nav{display:flex; justify-content:space-between;}
-.f_inner nav a{display:inline-block; line-height:30px;}
+.f_inner nav{justify-content:space-between;}
+.f_inner nav dl{margin:0 0 20px 2.5%;}
+.f_inner nav a{
+  display:inline-block; line-height:30px;
+  font-weight:500;
+}
 .f_inner nav dt a{color:var(--bg_color01);}
 .f_inner nav dt{
   color:var(--font_color02);
@@ -149,13 +153,14 @@ footer{
 .f_inner nav dl dd a{color:#979797;}
 
 .f_inner nav dl .i_flex{
-  display:flex; justify-content:space-between;
+  display:flex;
 }
 .f_inner nav dl .i_flex a{
   font-size:19px;
   color:var(--font_color02);
   border:1px solid #404040;
   padding:4px 6px;
+  margin-right:10px;
 }
 /* f_bottom 서식 */
 .f_bottom{
@@ -165,7 +170,7 @@ footer{
 .f_bottom h2{
   position:absolute;
   display:inline-block; padding:20px 0;
-  bottom:0; left:10%;
+  bottom:0; left:2.5%;
 }
 .f_bottom a{
   display:inline-block; width:135px;
@@ -173,9 +178,15 @@ footer{
 .f_bottom a img{width:100%;}
 .f_bottom span{
   position:absolute;
-  bottom:20px; right:10%;
+  bottom:20px; right:2.5%;
   display:inline-block;color:#666;
 }
+.view_pc{
+  padding:0 8px;
+  margin-top:20px;
+  background:#e6e6e6;
+  color:#333;
+};
 /* 호버 서식 */
 .f_inner dl dd a:hover{
   transition:0.6s;
@@ -187,5 +198,5 @@ footer{
 /* top버튼 서식 */
 .top_btn{
   position:fixed; right:26px; bottom:126px;
-  z-index:2000; display:none;
+  z-index:2000;
 }

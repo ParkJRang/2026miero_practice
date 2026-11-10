@@ -30,7 +30,7 @@ function fadeInOut(){
   //해당 인덱스값(n)에 해당하는 컨트롤 보튼에 on서식 적용
   ctrl_btn[n].classList.add('on');
   m_img[n].style.opacity='1';
-  console.log(n);
+  // console.log(n);
 };
 
 
@@ -76,7 +76,7 @@ ctrl_btn.forEach(btn=>{
 //컨트롤 버튼을 클릭하면 해당 슬라이드 이미지가 나오도록 함
 ctrl_btn.forEach((btn, idx)=>{
   btn.addEventListener('click', function(){
-    console.log(idx);
+    // console.log(idx);
     //보이는 슬라이드 이미지 모두 숨기기
     m_img.forEach(img=>{
       img.style.opacity='0';
@@ -145,7 +145,7 @@ tab_list.forEach((tab, i)=>{
     tab_list[i].classList.add('t_on');
     //3번째 탭메뉴 선택시, 탭컨텐츠 영역의 높이가 늘어나게 하기
     if(i===2){
-      tab_cont[i].parentElement.parentElement.parentElement.style.height='760px';
+      tab_cont[i].parentElement.parentElement.parentElement.style.height='700px';
       // tab_backImg.style.backgroundPosition='bottom';
     }else if(i===1){
       tab_cont[i].parentElement.parentElement.parentElement.style.height='500px';
@@ -153,4 +153,66 @@ tab_list.forEach((tab, i)=>{
       tab_cont[i].parentElement.parentElement.parentElement.style.height='600px';
     }
   });
+});
+
+// 3. 이벤트 슬라이드
+const sw = document.querySelector('.slide_wrap');
+const el_btn = document.querySelector('.fa-angle-left');
+const er_btn = document.querySelector('.fa-angle-right');
+let s_count = document.querySelectorAll('.slide_wrap figure');
+let cont = 0; //초기값 설정;
+let s_total = s_count.length;
+// console.log(s_total);
+//슬라이드 총 길이
+const s_fig = 100;
+function mslide(n){
+  cont = n;
+  sw.style.left = s_fig*-n + '%';
+  console.log(sw.style.left);
+}
+//3초마다 0,1,2값을 mslide에 넘기기
+let Timer2 = setInterval(function(){
+  if(cont<s_total-1){//만약 cont가 2보다 작으면
+    mslide(cont+1);//1을 더하여 mslide에 넘김
+  }else{//그렇지 않으면
+    mslide(0);//0을 넣어서 1번이 나오도록 mslide에 넘김
+  }
+}, 3000);
+//좌/우 버튼 클릭시 시간객체 제거하고 이동.
+el_btn.addEventListener('click',()=>{
+  // alert('좌');
+  clearInterval(Timer2);
+  if(cont>0){//만약 cont가 2보다 작으면
+    mslide(cont-1);//1을 더하여 mslide에 넘김
+  }else{//그렇지 않으면
+    mslide(s_total-1);//0을 넣어서 1번이 나오도록 mslide에 넘김
+  }
+});
+er_btn.addEventListener('click',()=>{
+  // alert('우');
+  clearInterval(Timer2);
+  if(cont<s_total-1){//만약 cont가 2보다 작으면
+    mslide(cont+1);//1을 더하여 mslide에 넘김
+  }else{//그렇지 않으면
+    mslide(0);//0을 넣어서 1번이 나오도록 mslide에 넘김
+  }
+});
+//좌/우 버튼 마우스 아웃시 시간객체 재생
+el_btn.addEventListener('mouseleave',function(){
+  Timer2 = setInterval(function(){
+    if(cont<s_total-1){//만약 cont가 2보다 작으면
+      mslide(cont+1);//1을 더하여 mslide에 넘김
+    }else{//그렇지 않으면
+      mslide(0);//0을 넣어서 1번이 나오도록 mslide에 넘김
+    }
+  }, 3000);
+});
+er_btn.addEventListener('mouseleave',function(){
+  Timer2 = setInterval(function(){
+    if(cont<s_total-1){//만약 cont가 2보다 작으면
+      mslide(cont+1);//1을 더하여 mslide에 넘김
+    }else{//그렇지 않으면
+      mslide(0);//0을 넣어서 1번이 나오도록 mslide에 넘김
+    }
+  }, 3000);
 });
